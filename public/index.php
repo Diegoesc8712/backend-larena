@@ -9,6 +9,7 @@ $app = new \Slim\App;
 // Ruta clientes
 require '../src/rutas/informacionpagovirtual.php';
 require '../src/rutas/historialPacientes.php';
+require '../src/rutas/citas.php';
 $app->run();
 
 

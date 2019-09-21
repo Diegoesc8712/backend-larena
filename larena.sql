@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-09-2019 a las 22:47:34
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.1.32
+-- Tiempo de generación: 21-09-2019 a las 16:16:31
+-- Versión del servidor: 10.1.34-MariaDB
+-- Versión de PHP: 5.6.37
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,59 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `larena`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `citas`
+--
+
+CREATE TABLE `citas` (
+  `id` int(11) NOT NULL,
+  `idtipoCita` int(11) NOT NULL,
+  `idPaciente` int(11) NOT NULL,
+  `idDoctor` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `estado` char(1) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL COMMENT 'Activo: A - Inactivo: I',
+  `formaPago` char(1) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL COMMENT 'Efectivo: E - Tarjeta: T',
+  `param` text CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `fechaSolicitud` datetime NOT NULL,
+  `tipoCita` varchar(10) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `citas`
+--
+
+INSERT INTO `citas` (`id`, `idtipoCita`, `idPaciente`, `idDoctor`, `fecha`, `hora`, `estado`, `formaPago`, `param`, `fechaSolicitud`, `tipoCita`) VALUES
+(1, 2, 2, 2, '2019-09-22', '11:00:00', 'A', 'T', '-', '2019-09-18 06:21:12', 'psicologia'),
+(3, 2, 2, 2, '2019-09-22', '11:00:00', 'A', 'T', '-', '0000-00-00 00:00:00', ''),
+(4, 2, 1, 2, '2019-09-22', '11:00:00', 'A', 'T', '-', '2019-09-18 06:21:12', 'psicologia');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `historialpacientes`
+--
+
+CREATE TABLE `historialpacientes` (
+  `id` int(11) NOT NULL,
+  `idPaciente` int(11) NOT NULL,
+  `idDoctor` int(11) NOT NULL,
+  `idcita` int(11) NOT NULL,
+  `diagnostico` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `recomendaciones` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `observaciones` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `param` text CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `historialpacientes`
+--
+
+INSERT INTO `historialpacientes` (`id`, `idPaciente`, `idDoctor`, `idcita`, `diagnostico`, `recomendaciones`, `observaciones`, `param`) VALUES
+(2, 2, 2, 2, 'Paciente con alzheimer', 'No salir solo', 'Estar pendientes', '-');
 
 -- --------------------------------------------------------
 
@@ -46,6 +99,18 @@ INSERT INTO `informacionpagovirtual` (`id`, `entidadPago`, `link`) VALUES
 --
 
 --
+-- Indices de la tabla `citas`
+--
+ALTER TABLE `citas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `historialpacientes`
+--
+ALTER TABLE `historialpacientes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `informacionpagovirtual`
 --
 ALTER TABLE `informacionpagovirtual`
@@ -54,6 +119,18 @@ ALTER TABLE `informacionpagovirtual`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `citas`
+--
+ALTER TABLE `citas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `historialpacientes`
+--
+ALTER TABLE `historialpacientes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `informacionpagovirtual`
