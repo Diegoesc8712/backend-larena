@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-09-2019 a las 16:16:31
+-- Tiempo de generación: 22-09-2019 a las 14:56:28
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 5.6.37
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `larena`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `autenticacion`
+--
+
+CREATE TABLE `autenticacion` (
+  `id` int(11) NOT NULL,
+  `correo` varchar(25) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `contrasena` varchar(10) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `tipoUsuario` varchar(10) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `fechaActualizacion` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `autenticacion`
+--
+
+INSERT INTO `autenticacion` (`id`, `correo`, `contrasena`, `tipoUsuario`, `idUsuario`, `fechaActualizacion`) VALUES
+(1, 'diego@gmail.com', '987654', 'paciente', 2, '2019-09-11 09:23:22');
 
 -- --------------------------------------------------------
 
@@ -99,6 +121,12 @@ INSERT INTO `informacionpagovirtual` (`id`, `entidadPago`, `link`) VALUES
 --
 
 --
+-- Indices de la tabla `autenticacion`
+--
+ALTER TABLE `autenticacion`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `citas`
 --
 ALTER TABLE `citas`
@@ -121,6 +149,12 @@ ALTER TABLE `informacionpagovirtual`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `autenticacion`
+--
+ALTER TABLE `autenticacion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
@@ -136,7 +170,7 @@ ALTER TABLE `historialpacientes`
 -- AUTO_INCREMENT de la tabla `informacionpagovirtual`
 --
 ALTER TABLE `informacionpagovirtual`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
