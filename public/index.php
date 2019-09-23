@@ -14,6 +14,7 @@ require '../src/rutas/autenticacion.php';
 require '../src/rutas/informacionCompartidaHistorial.php';
 require '../src/rutas/tipoCitas.php';
 require '../src/rutas/disponibilidadAgenda.php';
+require '../src/rutas/informacionCompartir.php';
 $app->run();
 
 

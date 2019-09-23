@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-09-2019 a las 19:54:06
+-- Tiempo de generación: 23-09-2019 a las 21:32:59
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.1.32
 
@@ -135,6 +135,29 @@ CREATE TABLE `informacioncompartidahistorial` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `informacioncompartir`
+--
+
+CREATE TABLE `informacioncompartir` (
+  `id` int(11) NOT NULL,
+  `archivo` varchar(50) NOT NULL,
+  `url` varchar(50) NOT NULL,
+  `titulo` varchar(50) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `param` text NOT NULL,
+  `fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `informacioncompartir`
+--
+
+INSERT INTO `informacioncompartir` (`id`, `archivo`, `url`, `titulo`, `descripcion`, `param`, `fecha`) VALUES
+(2, 'archivo', 'archivo2.pdf', 'archivo2', 'archivo1', '-', '2019-09-24 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `informacionpagovirtual`
 --
 
@@ -209,6 +232,12 @@ ALTER TABLE `informacioncompartidahistorial`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `informacioncompartir`
+--
+ALTER TABLE `informacioncompartir`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `informacionpagovirtual`
 --
 ALTER TABLE `informacionpagovirtual`
@@ -253,6 +282,12 @@ ALTER TABLE `historialpacientes`
 --
 ALTER TABLE `informacioncompartidahistorial`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `informacioncompartir`
+--
+ALTER TABLE `informacioncompartir`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `informacionpagovirtual`
