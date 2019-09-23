@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-09-2019 a las 17:05:27
+-- Tiempo de generación: 23-09-2019 a las 19:54:06
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.1.32
 
@@ -72,6 +72,29 @@ INSERT INTO `citas` (`id`, `idtipoCita`, `idPaciente`, `idDoctor`, `fecha`, `hor
 (1, 2, 2, 2, '2019-09-22', '11:00:00', 'A', 'T', '-', '2019-09-18 06:21:12', 'psicologia'),
 (3, 2, 2, 2, '2019-09-22', '11:00:00', 'A', 'T', '-', '0000-00-00 00:00:00', ''),
 (4, 2, 1, 2, '2019-09-22', '11:00:00', 'A', 'T', '-', '2019-09-18 06:21:12', 'psicologia');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `disponibilidadagenda`
+--
+
+CREATE TABLE `disponibilidadagenda` (
+  `id` int(11) NOT NULL,
+  `idDoctor` int(11) NOT NULL,
+  `idtipoCita` int(11) NOT NULL,
+  `fechaInicial` date NOT NULL,
+  `horaInicial` time NOT NULL,
+  `fechaFinal` date NOT NULL,
+  `horaFinal` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `disponibilidadagenda`
+--
+
+INSERT INTO `disponibilidadagenda` (`id`, `idDoctor`, `idtipoCita`, `fechaInicial`, `horaInicial`, `fechaFinal`, `horaFinal`) VALUES
+(2, 2, 3, '2019-09-24', '09:00:00', '2019-09-24', '10:00:00');
 
 -- --------------------------------------------------------
 
@@ -168,6 +191,12 @@ ALTER TABLE `citas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `disponibilidadagenda`
+--
+ALTER TABLE `disponibilidadagenda`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `historialpacientes`
 --
 ALTER TABLE `historialpacientes`
@@ -206,6 +235,12 @@ ALTER TABLE `autenticacion`
 --
 ALTER TABLE `citas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `disponibilidadagenda`
+--
+ALTER TABLE `disponibilidadagenda`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `historialpacientes`
