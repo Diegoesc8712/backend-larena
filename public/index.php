@@ -15,6 +15,7 @@ require '../src/rutas/informacionCompartidaHistorial.php';
 require '../src/rutas/tipoCitas.php';
 require '../src/rutas/disponibilidadAgenda.php';
 require '../src/rutas/informacionCompartir.php';
+require '../src/rutas/citaVirtual.php';
 $app->run();
 
 
