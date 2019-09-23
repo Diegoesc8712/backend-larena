@@ -12,6 +12,7 @@ require '../src/rutas/historialPacientes.php';
 require '../src/rutas/citas.php';
 require '../src/rutas/autenticacion.php';
 require '../src/rutas/informacionCompartidaHistorial.php';
+require '../src/rutas/tipoCitas.php';
 $app->run();
 
 

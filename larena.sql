@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-09-2019 a las 14:56:28
--- Versión del servidor: 10.1.34-MariaDB
--- Versión de PHP: 5.6.37
+-- Tiempo de generación: 23-09-2019 a las 17:05:27
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -100,6 +100,18 @@ INSERT INTO `historialpacientes` (`id`, `idPaciente`, `idDoctor`, `idcita`, `dia
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `informacioncompartidahistorial`
+--
+
+CREATE TABLE `informacioncompartidahistorial` (
+  `id` int(11) NOT NULL,
+  `idHistorial` int(11) NOT NULL,
+  `idInformacionCompartir` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `informacionpagovirtual`
 --
 
@@ -115,6 +127,29 @@ CREATE TABLE `informacionpagovirtual` (
 
 INSERT INTO `informacionpagovirtual` (`id`, `entidadPago`, `link`) VALUES
 (1, 'Bancolombia', 'www.grupobancolombia.com');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipocitas`
+--
+
+CREATE TABLE `tipocitas` (
+  `id` int(11) NOT NULL,
+  `especialidad` varchar(255) NOT NULL,
+  `cede` varchar(30) NOT NULL,
+  `valor` float NOT NULL,
+  `Param` text NOT NULL,
+  `tipo` char(1) NOT NULL COMMENT 'Vitual: V - Presencial: P - Domicilio: D - Otro: O',
+  `tiempoSesion` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tipocitas`
+--
+
+INSERT INTO `tipocitas` (`id`, `especialidad`, `cede`, `valor`, `Param`, `tipo`, `tiempoSesion`) VALUES
+(2, 'psicologia', 'bogota', 180000, '-', 'D', '01:00:00');
 
 --
 -- Índices para tablas volcadas
@@ -139,9 +174,21 @@ ALTER TABLE `historialpacientes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `informacioncompartidahistorial`
+--
+ALTER TABLE `informacioncompartidahistorial`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `informacionpagovirtual`
 --
 ALTER TABLE `informacionpagovirtual`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `tipocitas`
+--
+ALTER TABLE `tipocitas`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -167,10 +214,22 @@ ALTER TABLE `historialpacientes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `informacioncompartidahistorial`
+--
+ALTER TABLE `informacioncompartidahistorial`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `informacionpagovirtual`
 --
 ALTER TABLE `informacionpagovirtual`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `tipocitas`
+--
+ALTER TABLE `tipocitas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
