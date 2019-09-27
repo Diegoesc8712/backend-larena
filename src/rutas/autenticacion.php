@@ -9,7 +9,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 //     "idUsuario": "2",
 //     "fechaActualizacion": "2019-09-11 09:23:22"
 // }
-
 $app = new \Slim\App;
 
 //Get todos autenticacion

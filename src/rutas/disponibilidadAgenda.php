@@ -14,7 +14,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 $app = new \Slim\App;
 
 //Get todos disponibilidadagenda
-$app->get('/api/disponibilidadagenda', function(Request $request, Response $response){
+$app->get('/api/disponibilidAdagenda', function(Request $request, Response $response){
 
     $consulta = "SELECT * FROM disponibilidadagenda;";
 
@@ -33,7 +33,7 @@ $app->get('/api/disponibilidadagenda', function(Request $request, Response $resp
 });
 
 //Get disponibilidadagenda por id
-$app->get('/api/disponibilidadagenda/{id}', function(Request $request, Response $response){
+$app->get('/api/disponibilidAdagenda/{id}', function(Request $request, Response $response){
     $iddisponibilidadagenda = $request->getAttribute('id');
     $consulta = "SELECT * FROM disponibilidadagenda WHERE id = $iddisponibilidadagenda;";
 
@@ -52,7 +52,7 @@ $app->get('/api/disponibilidadagenda/{id}', function(Request $request, Response 
 });
 
 //crear nuevo disponibilidadagenda
-$app->post('/api/disponibilidadagenda/nuevo', function(Request $request, Response $response){
+$app->post('/api/disponibilidadAgenda/nuevo', function(Request $request, Response $response){
 
     $idDoctor = $request->getParam('idDoctor');
     $idtipoCita = $request->getParam('idtipoCita');
@@ -90,7 +90,7 @@ $app->post('/api/disponibilidadagenda/nuevo', function(Request $request, Respons
 
 
 //modificar disponibilidadagenda 
-$app->put('/api/disponibilidadagenda/modificar/{id}', function(Request $request, Response $response){
+$app->put('/api/disponibilidadAgenda/modificar/{id}', function(Request $request, Response $response){
     $iddisponibilidadagenda = $request->getAttribute('id');
     $idDoctor = $request->getParam('idDoctor');
     $idtipoCita = $request->getParam('idtipoCita');
@@ -134,7 +134,7 @@ $app->put('/api/disponibilidadagenda/modificar/{id}', function(Request $request,
 
 //eliminar cliente
 // idDoctor`, `idtipoCita`, `fechaInicial`, `Param`, `tipo`, `tiempoSesion`, `param`
-$app->delete('/api/disponibilidadagenda/eliminar/{id}', function(Request $request, Response $response){
+$app->delete('/api/disponibilidadAgenda/eliminar/{id}', function(Request $request, Response $response){
     $iddisponibilidadagenda = $request->getAttribute('id');
        $consulta = "DELETE FROM disponibilidadagenda
        WHERE id = $iddisponibilidadagenda";

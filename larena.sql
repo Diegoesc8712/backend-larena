@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
--- https://www.phpmyadmin.net/
+-- version 4.2.11
+-- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-09-2019 a las 21:51:32
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.1.32
+-- Tiempo de generación: 27-09-2019 a las 19:28:03
+-- Versión del servidor: 5.6.21
+-- Versión de PHP: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `larena`
@@ -28,14 +26,14 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `autenticacion`
 --
 
-CREATE TABLE `autenticacion` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `autenticacion` (
+`id` int(11) NOT NULL,
   `correo` varchar(25) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `contrasena` varchar(10) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `tipoUsuario` varchar(10) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `idUsuario` int(11) NOT NULL,
   `fechaActualizacion` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `autenticacion`
@@ -50,8 +48,8 @@ INSERT INTO `autenticacion` (`id`, `correo`, `contrasena`, `tipoUsuario`, `idUsu
 -- Estructura de tabla para la tabla `citas`
 --
 
-CREATE TABLE `citas` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `citas` (
+`id` int(11) NOT NULL,
   `idtipoCita` int(11) NOT NULL,
   `idPaciente` int(11) NOT NULL,
   `idDoctor` int(11) NOT NULL,
@@ -62,7 +60,7 @@ CREATE TABLE `citas` (
   `param` text CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `fechaSolicitud` datetime NOT NULL,
   `tipoCita` varchar(10) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `citas`
@@ -79,13 +77,13 @@ INSERT INTO `citas` (`id`, `idtipoCita`, `idPaciente`, `idDoctor`, `fecha`, `hor
 -- Estructura de tabla para la tabla `citavirtual`
 --
 
-CREATE TABLE `citavirtual` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `citavirtual` (
+`id` int(11) NOT NULL,
   `idCita` int(11) NOT NULL,
   `estado` char(1) NOT NULL COMMENT 'Activo: A - Inactivo: I',
   `param` text NOT NULL,
   `fecha` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `citavirtual`
@@ -100,15 +98,15 @@ INSERT INTO `citavirtual` (`id`, `idCita`, `estado`, `param`, `fecha`) VALUES
 -- Estructura de tabla para la tabla `disponibilidadagenda`
 --
 
-CREATE TABLE `disponibilidadagenda` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `disponibilidadagenda` (
+`id` int(11) NOT NULL,
   `idDoctor` int(11) NOT NULL,
   `idtipoCita` int(11) NOT NULL,
   `fechaInicial` date NOT NULL,
   `horaInicial` time NOT NULL,
   `fechaFinal` date NOT NULL,
   `horaFinal` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `disponibilidadagenda`
@@ -120,11 +118,40 @@ INSERT INTO `disponibilidadagenda` (`id`, `idDoctor`, `idtipoCita`, `fechaInicia
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `doctores`
+--
+
+CREATE TABLE IF NOT EXISTS `doctores` (
+`id` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `correo` varchar(50) NOT NULL,
+  `estado` char(1) NOT NULL COMMENT 'Disponible: D',
+  `estadoVisible` char(1) NOT NULL COMMENT 'Visible: V',
+  `foto` varchar(50) NOT NULL,
+  `titulo` varchar(50) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `telefono` int(15) NOT NULL,
+  `numIdentificacion` int(15) NOT NULL,
+  `param` text NOT NULL,
+  `fecha` datetime NOT NULL,
+  `tarjetaProfesional` varchar(20) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `doctores`
+--
+
+INSERT INTO `doctores` (`id`, `nombre`, `correo`, `estado`, `estadoVisible`, `foto`, `titulo`, `descripcion`, `telefono`, `numIdentificacion`, `param`, `fecha`, `tarjetaProfesional`) VALUES
+(1, 'Reuth Afef', 'reuth@gmail.com', 'A', 'V', 'fotoreuth.jpg', 'psicologo', 'especialista', 1112233, 987654321, '-', '2019-09-27 05:17:35', '147852369');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `historialpacientes`
 --
 
-CREATE TABLE `historialpacientes` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `historialpacientes` (
+`id` int(11) NOT NULL,
   `idPaciente` int(11) NOT NULL,
   `idDoctor` int(11) NOT NULL,
   `idcita` int(11) NOT NULL,
@@ -132,7 +159,7 @@ CREATE TABLE `historialpacientes` (
   `recomendaciones` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `observaciones` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `param` text CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `historialpacientes`
@@ -147,11 +174,19 @@ INSERT INTO `historialpacientes` (`id`, `idPaciente`, `idDoctor`, `idcita`, `dia
 -- Estructura de tabla para la tabla `informacioncompartidahistorial`
 --
 
-CREATE TABLE `informacioncompartidahistorial` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `informacioncompartidahistorial` (
+`id` int(11) NOT NULL,
   `idHistorial` int(11) NOT NULL,
   `idInformacionCompartir` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `informacioncompartidahistorial`
+--
+
+INSERT INTO `informacioncompartidahistorial` (`id`, `idHistorial`, `idInformacionCompartir`) VALUES
+(1, 1, 1),
+(2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -159,15 +194,15 @@ CREATE TABLE `informacioncompartidahistorial` (
 -- Estructura de tabla para la tabla `informacioncompartir`
 --
 
-CREATE TABLE `informacioncompartir` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `informacioncompartir` (
+`id` int(11) NOT NULL,
   `archivo` varchar(50) NOT NULL,
   `url` varchar(50) NOT NULL,
   `titulo` varchar(50) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
   `param` text NOT NULL,
   `fecha` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `informacioncompartir`
@@ -182,11 +217,11 @@ INSERT INTO `informacioncompartir` (`id`, `archivo`, `url`, `titulo`, `descripci
 -- Estructura de tabla para la tabla `informacionpagovirtual`
 --
 
-CREATE TABLE `informacionpagovirtual` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `informacionpagovirtual` (
+`id` int(11) NOT NULL,
   `entidadPago` varchar(20) NOT NULL,
   `link` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `informacionpagovirtual`
@@ -201,15 +236,15 @@ INSERT INTO `informacionpagovirtual` (`id`, `entidadPago`, `link`) VALUES
 -- Estructura de tabla para la tabla `tipocitas`
 --
 
-CREATE TABLE `tipocitas` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tipocitas` (
+`id` int(11) NOT NULL,
   `especialidad` varchar(255) NOT NULL,
   `cede` varchar(30) NOT NULL,
   `valor` float NOT NULL,
   `Param` text NOT NULL,
   `tipo` char(1) NOT NULL COMMENT 'Vitual: V - Presencial: P - Domicilio: D - Otro: O',
   `tiempoSesion` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tipocitas`
@@ -226,55 +261,61 @@ INSERT INTO `tipocitas` (`id`, `especialidad`, `cede`, `valor`, `Param`, `tipo`,
 -- Indices de la tabla `autenticacion`
 --
 ALTER TABLE `autenticacion`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `citas`
 --
 ALTER TABLE `citas`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `citavirtual`
 --
 ALTER TABLE `citavirtual`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `disponibilidadagenda`
 --
 ALTER TABLE `disponibilidadagenda`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `doctores`
+--
+ALTER TABLE `doctores`
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `historialpacientes`
 --
 ALTER TABLE `historialpacientes`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `informacioncompartidahistorial`
 --
 ALTER TABLE `informacioncompartidahistorial`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `informacioncompartir`
 --
 ALTER TABLE `informacioncompartir`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `informacionpagovirtual`
 --
 ALTER TABLE `informacionpagovirtual`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `tipocitas`
 --
 ALTER TABLE `tipocitas`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -284,57 +325,52 @@ ALTER TABLE `tipocitas`
 -- AUTO_INCREMENT de la tabla `autenticacion`
 --
 ALTER TABLE `autenticacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `citavirtual`
 --
 ALTER TABLE `citavirtual`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `disponibilidadagenda`
 --
 ALTER TABLE `disponibilidadagenda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `doctores`
+--
+ALTER TABLE `doctores`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `historialpacientes`
 --
 ALTER TABLE `historialpacientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `informacioncompartidahistorial`
 --
 ALTER TABLE `informacioncompartidahistorial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `informacioncompartir`
 --
 ALTER TABLE `informacioncompartir`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `informacionpagovirtual`
 --
 ALTER TABLE `informacionpagovirtual`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `tipocitas`
 --
 ALTER TABLE `tipocitas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-COMMIT;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

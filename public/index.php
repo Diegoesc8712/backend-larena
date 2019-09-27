@@ -7,15 +7,16 @@ require '../src/config/db.php';
 
 $app = new \Slim\App;
 // Ruta clientes
-require '../src/rutas/informacionpagovirtual.php';
-require '../src/rutas/historialPacientes.php';
-require '../src/rutas/citas.php';
 require '../src/rutas/autenticacion.php';
-require '../src/rutas/informacionCompartidaHistorial.php';
-require '../src/rutas/tipoCitas.php';
-require '../src/rutas/disponibilidadAgenda.php';
-require '../src/rutas/informacionCompartir.php';
+require '../src/rutas/citas.php';
 require '../src/rutas/citaVirtual.php';
+require '../src/rutas/disponibilidadAgenda.php';
+require '../src/rutas/historialPacientes.php';
+require '../src/rutas/informacionCompartidaHistorial.php';
+require '../src/rutas/informacionCompartir.php';
+require '../src/rutas/informacionPagoVirtual.php';
+require '../src/rutas/tipoCitas.php';
+require '../src/rutas/doctores.php';
 $app->run();
 
 

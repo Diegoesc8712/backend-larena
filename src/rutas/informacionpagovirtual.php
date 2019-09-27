@@ -5,7 +5,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 $app = new \Slim\App;
 
 //Get todos informacionpagovirtual
-$app->get('/api/informacionpagovirtual', function(Request $request, Response $response){
+$app->get('/api/informacionPagoVirtual', function(Request $request, Response $response){
     $consulta = "SELECT * FROM informacionpagovirtual;";
 
     try{
@@ -23,7 +23,7 @@ $app->get('/api/informacionpagovirtual', function(Request $request, Response $re
 });
 
 //Get informacionpagovirtual por id
-$app->get('/api/informacionpagovirtual/{id}', function(Request $request, Response $response){
+$app->get('/api/informacionPagoVirtual/{id}', function(Request $request, Response $response){
     $idinformacionpagovirtual = $request->getAttribute('id');
     $consulta = "SELECT * FROM informacionpagovirtual WHERE id = $idinformacionpagovirtual;";
 
@@ -42,7 +42,7 @@ $app->get('/api/informacionpagovirtual/{id}', function(Request $request, Respons
 });
 
 //crear nuevo informacionpagovirtual
-$app->post('/api/informacionpagovirtual/nuevo', function(Request $request, Response $response){
+$app->post('/api/informacionPagoVirtual/nuevo', function(Request $request, Response $response){
     $entidadPago = $request->getParam('entidadPago');
     $link = $request->getParam('link');
     
@@ -71,7 +71,7 @@ $app->post('/api/informacionpagovirtual/nuevo', function(Request $request, Respo
 
 
 //modificar informacionpagovirtual 
-$app->put('/api/informacionpagovirtual/modificar/{id}', function(Request $request, Response $response){
+$app->put('/api/informacionPagoVirtual/modificar/{id}', function(Request $request, Response $response){
     $idinformacionpagovirtual = $request->getAttribute('id');
     $entidadPago = $request->getParam('entidadPago');
     $link = $request->getParam('link');
@@ -101,7 +101,7 @@ $app->put('/api/informacionpagovirtual/modificar/{id}', function(Request $reques
 });
 
 //eliminar cliente
-$app->delete('/api/informacionpagovirtual/eliminar/{id}', function(Request $request, Response $response){
+$app->delete('/api/informacionPagoVirtual/eliminar/{id}', function(Request $request, Response $response){
     $idinformacionpagovirtual = $request->getAttribute('id');
        $consulta = "DELETE FROM informacionpagovirtual
        WHERE id = $idinformacionpagovirtual";
