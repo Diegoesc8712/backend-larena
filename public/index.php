@@ -17,6 +17,7 @@ require '../src/rutas/informacionCompartir.php';
 require '../src/rutas/informacionPagoVirtual.php';
 require '../src/rutas/tipoCitas.php';
 require '../src/rutas/doctores.php';
+require '../src/rutas/pacientes.php';
 $app->run();
 
 
