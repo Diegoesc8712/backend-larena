@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-09-2019 a las 19:28:03
+-- Tiempo de generación: 27-09-2019 a las 21:40:05
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -233,6 +233,36 @@ INSERT INTO `informacionpagovirtual` (`id`, `entidadPago`, `link`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pacientes`
+--
+
+CREATE TABLE IF NOT EXISTS `pacientes` (
+`id` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `correo` varchar(50) NOT NULL,
+  `estado` char(1) NOT NULL COMMENT 'Activo: A - Inactivo: I',
+  `fecha` datetime NOT NULL,
+  `telefono` int(15) NOT NULL,
+  `ciudad` varchar(30) NOT NULL,
+  `genero` char(1) NOT NULL COMMENT 'Masculino: M- Femenino: F',
+  `fechaNacimiento` date NOT NULL,
+  `domicilio` text NOT NULL,
+  `EPS` varchar(30) NOT NULL,
+  `numIdentificacion` varchar(15) NOT NULL,
+  `politicas` varchar(255) NOT NULL,
+  `foto` varchar(25) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pacientes`
+--
+
+INSERT INTO `pacientes` (`id`, `nombre`, `correo`, `estado`, `fecha`, `telefono`, `ciudad`, `genero`, `fechaNacimiento`, `domicilio`, `EPS`, `numIdentificacion`, `politicas`, `foto`) VALUES
+(1, 'chepe', 'chepe@gmail.com', 'A', '2019-09-27 00:00:00', 789456, 'Manizales', 'N', '1999-09-27', 'calle 12', 'sura', '52525252', 'A', 'fotochepe.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipocitas`
 --
 
@@ -312,6 +342,12 @@ ALTER TABLE `informacionpagovirtual`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `pacientes`
+--
+ALTER TABLE `pacientes`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `tipocitas`
 --
 ALTER TABLE `tipocitas`
@@ -366,6 +402,11 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 ALTER TABLE `informacionpagovirtual`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `pacientes`
+--
+ALTER TABLE `pacientes`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `tipocitas`
 --
